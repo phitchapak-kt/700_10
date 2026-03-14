@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
 
 
     --  ตาราง listings  ประกาศขาย/ประเภทสินค้า
-
+    
     --  users (1) ──< (many) listings 
     --  listings (1) ──< (many) saved_listings
 
