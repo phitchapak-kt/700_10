@@ -9,7 +9,7 @@ const getConnection = async () => {
       user: process.env.DB_USER || 'root',
       password: process.env.DB_PASS || 'root',
       database: process.env.DB_NAME || 'webdb',
-      port: parseInt(process.env.DB_PORT) || 8090
+      port: parseInt(process.env.DB_PORT) || 8091
     })
     console.log('Connected to MySQL database')
   }

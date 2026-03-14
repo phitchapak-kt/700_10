@@ -75,9 +75,9 @@ CREATE TABLE IF NOT EXISTS `listing_images` (
 CREATE TABLE IF NOT EXISTS `conversations` (
   `id`              int(11)                 NOT NULL AUTO_INCREMENT,
   `listing_id`      int(11)                 NOT NULL,
-  `buyer_id`        int(11)                 NOT NULL,      --ผู้ซื้อ
-  `seller_id`       int(11)                 NOT NULL,      --ผู้ขาย
-  `created_at`       timestamp               NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `buyer_id`        int(11)                 NOT NULL,      
+  `seller_id`       int(11)                 NOT NULL,      
+  `created_at`       timestamp              NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`listing_id`) REFERENCES `listings`(`id`) ON DELETE CASCADE,
   FOREIGN KEY (`buyer_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;  
 
 
-    --ตาราง saved_listings การบันทึกสิ่งของ
+    -- ตาราง saved_listings การบันทึกสิ่งของ
     --  users (1) ──< (many) saved_listings
    
 
