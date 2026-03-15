@@ -24,7 +24,7 @@ const findById = async (id) => {
             sender.firstname AS  sender_firstname,
             sender.lastname AS   sender_lastname
         FROM messages
-        JOIN conversations ON messages.conversations_id = conversations.id
+        JOIN conversations ON messages.conversation_id = conversations.id
         JOIN users AS sender ON messages.sender_id = sender.id
         WHERE messages.id = ?
     `, [id])
