@@ -17,7 +17,7 @@ const create = async (data) => {
     const { firstname, lastname, email, password, phone } = data
     const [result] = await conn.query(
         'INSERT INTO users (firstname, lastname, email, password, phone) VALUES (?, ?, ?, ?, ?)',
-        [firstname, lastname, email, gpassword, phone]
+        [firstname, lastname, email, password, phone]
     )
     return result
 }

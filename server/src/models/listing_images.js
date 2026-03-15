@@ -3,11 +3,11 @@ const { getConnection } = require('../config/db')
 const findAll = async () => {
     const conn = await getConnection()
     const [rows] = await conn.query(`
-        SELECT listings.*,
-            listings.title AS listings_title,
+        SELECT listing_images.*,
+            listings.title AS listings_title
         FROM listing_images
         JOIN listings ON listing_images.listings_id = listings.id
-        ORDER BY listings.created_at DESC
+        ORDER BY listing_images.created_at DESC
     `)
     return rows
 
@@ -17,12 +17,11 @@ const findAll = async () => {
 const findById = async (id) => {
     const conn = await getConnection()
     const [rows] = await conn.query(`
-        SELECT listings.*,
-            listings.title AS listings_title,
+        SELECT listing_images.*,
+            listings.title AS listings_title
         FROM listing_images
         JOIN listings ON listing_images.listings_id = listings.id
-        ORDER BY listings.created_at DESC
-        WHERE listings.id = ?
+        WHERE listing_images.id = ?
     `, [id])
 
     return rows[0]
@@ -31,10 +30,10 @@ const findById = async (id) => {
 
 const create = async (data) => {
     const conn = await getConnection()
-    const { listing_id, image_url, image_orde } = data
+    const { listing_id, image_url, image_order } = data
     const [result] = await conn.query(
-        'INSERT INTO listing_images (listing_id, image_url, image_orde) VALUES (?, ?, ?)',
-        [listing_id, image_url, image_orde]
+        'INSERT INTO listing_images (listing_id, image_url, image_order) VALUES (?, ?, ?)',
+        [listing_id, image_url, image_order]
     )
     return result
 }
@@ -42,13 +41,14 @@ const create = async (data) => {
 
 const update = async (id, data) => {
     const conn = await getConnection()
-    const { listing_id, image_url, image_orde } = data
+    const { listing_id, image_url, image_order } = data
     const [result] = await conn.query(
-        'UPDATE  listing_images SET listing_id=?,image_url=? , image_orde =?   WHERE id=?',
-        [listing_id, image_url, image_orde]
+        'UPDATE  listing_images SET listing_id=?,image_url=? , image_order =?   WHERE id=?',
+        [listing_id, image_url, image_order,id]
     )
     return result
 }
+
 
 const remove = async (id) => {
     const conn = await getConnection()
