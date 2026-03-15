@@ -8,7 +8,7 @@ INSERT INTO `categories` (`name`) VALUES
 
 
 INSERT INTO `listings` (`title`,`description`,`price`,`category_id`,`type`,`status`,`user_id`) VALUES
-('มือถือ รุ่น iPone 15','สภาพดีใช้ได้ไม่ถึง 1 เดือน',20000,1,'SELL','ACTIVE',1),
+('มือถือ รุ่น iPhone 15','สภาพดีใช้ได้ไม่ถึง 1 เดือน',20000,1,'SELL','ACTIVE',1),
 ('เมาส์ไร้สาย','ซื้อมาผิดสี อยากแลกเปลี่ยนเป็น สีดำ',200,2,'EXCHANGE','ACTIVE',2);
 
 
