@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;  
 
 
-     -- ตาราง categories 
+     -- ตาราง categories ประเภทสินค้า
      -- categories (1) ──< (many) listings
 CREATE TABLE IF NOT EXISTS `categories` (
   `id`           int(11)           NOT NULL AUTO_INCREMENT,

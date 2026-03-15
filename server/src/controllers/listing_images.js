@@ -38,6 +38,20 @@ const create = async (req, res, next) => {
     }
 }
 
+const update = async (req, res, next) => {
+  try {
+    const result = await Listing_imagesModel.update(req.params.id, req.body)
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: 'ไม่พบ listing_images' })
+    }
+
+    res.json({ message: 'update ok', data: result })
+  } catch (error) {
+    next(error)
+  }
+}
+
 const remove = async (req, res, next) => {
     try {
         const result = await Listing_imagesModel.remove(req.params.id)
@@ -53,4 +67,4 @@ const remove = async (req, res, next) => {
 
 
 
-module.exports = { getAll, getById, create, remove }
+module.exports = { getAll, getById, create,update, remove }

@@ -38,6 +38,20 @@ const create = async (req, res, next) => {
     }
 }
 
+const update = async (req, res, next) => {
+    try {
+        const result = await Saved_listingsModel.update(req.params.id, req.body)
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'ไม่พบ saved_listings' })
+        }
+
+        res.json({ message: 'update ok', data: result })
+    } catch (error) {
+        next(error)
+    }
+}
+
 const remove = async (req, res, next) => {
     try {
         const result = await Saved_listingsModel.remove(req.params.id)
@@ -50,4 +64,4 @@ const remove = async (req, res, next) => {
         next(error)
     }
 }
-module.exports = { getAll, getById, create, remove }
+module.exports = { getAll, getById, create,update, remove }

@@ -22,7 +22,7 @@ const getById = async (req, res, next) => {
 const create = async (req, res, next) => {
     try {
 
-        const { conversation_id, sender_id, content, is_read } = req.body
+        const { conversation_id, sender_id, content} = req.body
         const errors = []
         if (!conversation_id) errors.push('กรุณาระบุ conversation_id')
         if (!sender_id) errors.push('กรุณาระบุ sender_id')
@@ -38,6 +38,23 @@ const create = async (req, res, next) => {
     }
 }
 
+const update = async (req, res, next) => {
+    try {
+        const result = await MessagesModel.update(req.params.id, req.body)
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'ไม่พบ messages' })
+        }
+
+        res.json({ message: 'update ok', data: result })
+    } catch (error) {
+        next(error)
+    }
+}
+
+
+
+
 const remove = async (req, res, next) => {
     try {
         const result = await MessagesModel.remove(req.params.id)
@@ -50,5 +67,5 @@ const remove = async (req, res, next) => {
         next(error)
     }
 }
-module.exports = { getAll, getById, create, remove }
+module.exports = { getAll, getById, create, update, remove }
 
