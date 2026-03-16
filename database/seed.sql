@@ -1,6 +1,6 @@
 INSERT INTO `users` (`firstname`, `lastname`, `email`, `password`, `phone`) VALUES
-('สิริมา', 'ทามะ', 'ab@gmail.com', 12345, '0123854796'),
-('สุขใจ', 'สุขดี','zz@gmail.com', 25692, '0123888796');
+('สิริมา', 'ทามะ', 'ab@gmail.com', '123456', '0123854796'),
+('สุขใจ', 'สุขดี','zz@gmail.com', '256927', '0123888797');
 
 INSERT INTO `categories` (`name`) VALUES
 ('มือถือ'),
@@ -18,7 +18,7 @@ INSERT INTO `listing_images` (`listing_id`,`image_url`,`image_order`) VALUES
 
 
 INSERT INTO `conversations` (`listing_id`,`buyer_id`,`seller_id`) VALUES
-(1,1,2);
+(1,2,1);
 
 INSERT INTO `messages` (`conversation_id`,`sender_id`,`content`,`is_read`) VALUES
 (1, 2, 'ยังขายอยู่ไหมครับ', FALSE);

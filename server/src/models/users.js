@@ -24,10 +24,10 @@ const create = async (data) => {
 
 const update = async (id, data) => {
     const conn = await getConnection()
-    const { firstname, lastname, email, gpassword, phone } = data
+    const { firstname, lastname, email, password, phone } = data
     const [result] = await conn.query(
         'UPDATE users SET firstname=?, lastname=?, email=?, password=?,  phone=? WHERE id=?',
-        [firstname, lastname, email, gpassword, phone,id]
+        [firstname, lastname, email, password, phone,id]
     )
     return result
 

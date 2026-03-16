@@ -6,7 +6,7 @@ const findAll = async () => {
         SELECT listing_images.*,
             listings.title AS listings_title
         FROM listing_images
-        JOIN listings ON listing_images.listings_id = listings.id
+        JOIN listings ON listing_images.listing_id = listings.id
         ORDER BY listing_images.created_at DESC
     `)
     return rows
@@ -20,7 +20,7 @@ const findById = async (id) => {
         SELECT listing_images.*,
             listings.title AS listings_title
         FROM listing_images
-        JOIN listings ON listing_images.listings_id = listings.id
+        JOIN listings ON listing_images.listing_id = listings.id
         WHERE listing_images.id = ?
     `, [id])
 
