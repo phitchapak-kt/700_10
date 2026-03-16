@@ -41,7 +41,7 @@ const spec = {
                     phone: { type: 'string', example: '0123854796' }
                 }
             },
-            categories: {
+            Categories: {
                 type: 'object',
                 properties: {
                     id: { type: 'integer', example: 1 },
@@ -49,14 +49,14 @@ const spec = {
                     created_at: { type: 'string', format: 'date-time' }
                 }
             },
-            categoriesInput: {
+            CategoriesInput: {
                 type: 'object',
                 required: ['name'],
                 properties: {
                     name: { type: 'string', example: 'มือถือ' }
                 }
             },
-            listings: {
+            Listings: {
                 type: 'object',
                 properties: {
                     id: { type: 'integer', example: 1 },
@@ -70,7 +70,7 @@ const spec = {
                     created_at: { type: 'string', format: 'date-time' }
                 }
             },
-            listingsInput: {
+            ListingsInput: {
                 type: 'object',
                 required: ['title', 'description', 'price', 'category_id', 'type', 'status', 'user_id'],
                 properties: {
@@ -83,7 +83,7 @@ const spec = {
                     user_id: { type: 'integer', example: 1 }
                 }
             },
-            listing_images: {
+            Listing_images: {
                 type: 'object',
                 properties: {
                     id: { type: 'integer', example: 1 },
@@ -93,7 +93,7 @@ const spec = {
                     created_at: { type: 'string', format: 'date-time' }
                 }
             },
-            listing_imagesInput: {
+            Listing_imagesInput: {
                 type: 'object',
                 required: ['listing_id', 'image_url', 'image_order'],
                 properties: {
@@ -102,7 +102,7 @@ const spec = {
                     image_order: { type: 'integer', example: 1 }
                 }
             },
-            conversations: {
+            Conversations: {
                 type: 'object',
                 properties: {
                     id: { type: 'integer', example: 1 },
@@ -112,7 +112,7 @@ const spec = {
                     created_at: { type: 'string', format: 'date-time' }
                 }
             },
-            conversationsInput: {
+            ConversationsInput: {
                 type: 'object',
                 required: ['listing_id', 'buyer_id', 'seller_id'],
                 properties: {
@@ -121,7 +121,7 @@ const spec = {
                     seller_id: { type: 'integer', example: 2 }
                 }
             },
-            messages: {
+            Messages: {
                 type: 'object',
                 properties: {
                     id: { type: 'integer', example: 1 },
@@ -132,18 +132,18 @@ const spec = {
                     created_at: { type: 'string', format: 'date-time' }
                 }
             },
-            messagesInput: {
+            MessagesInput: {
                 type: 'object',
                 required: ['conversation_id', 'sender_id', 'content', 'is_read'],
                 properties: {
                     id: { type: 'integer', example: 1 },
                     conversation_id: { type: 'integer', example: 1 },
                     sender_id: { type: 'integer', example: 2 },
-                    is_read: { type: 'boolean', example: false},
+                    is_read: { type: 'boolean', example: false },
                     content: { type: 'string', example: 'ยังขายอยู่ไหมครับ' }
                 }
             },
-            saved_listings: {
+            Saved_listings: {
                 type: 'object',
                 properties: {
                     id: { type: 'integer', example: 1 },
@@ -152,19 +152,139 @@ const spec = {
                     created_at: { type: 'string', format: 'date-time' }
                 }
             },
-            saved_listingsInput: {
+            Saved_listingsInput: {
                 type: 'object',
                 required: ['user_id', 'listing_id'],
-                properties:{
+                properties: {
                     user_id: { type: 'integer', example: 1 },
                     listing_id: { type: 'integer', example: 2 }
+                }
+            },
+            SuccessMessage: {
+                type: 'object',
+                properties: {
+                    message: { type: 'string', example: 'insert ok' },
+                    data: { type: 'object' }
+                }
+            },
+            ErrorResponse: {
+                type: 'object',
+                properties: {
+                    message: { type: 'string', example: 'กรอกข้อมูลไม่ครบ' },
+                    errors: { type: 'array', items: { type: 'string' } }
                 }
             }
         }
     },
-    paths: {}
+    paths: {
+        // ─── Users ─────────────────────────────────────────────────────────────────
+        '/users': {
+            get: {
+                tags: ['Users'],
+                summary: 'ดึงรายชื่อผู้ใช้ทั้งหมด',
+                responses: {
+                    200: {
+                        description: 'รายชื่อผู้ใช้',
+                        content: { 'application/json': { schema: { type: 'array', items: { $ref: '#/components/schemas/User' } } } }
+                    }
+                }
+            },
+            post: {
+                tags: ['Users'],
+                summary: 'สร้างผู้ใช้ใหม่',
+                requestBody: {
+                    required: true,
+                    content: { 'application/json': { schema: { $ref: '#/components/schemas/UserInput' } } }
+                },
+                responses: {
+                    200: { description: 'สร้างสำเร็จ', content: { 'application/json': { schema: { $ref: '#/components/schemas/SuccessMessage' } } } },
+                    400: { description: 'ข้อมูลไม่ครบ', content: { 'application/json': { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+                }
+            }
+        },
+        '/users/{id}': {
+            get: {
+                tags: ['Users'],
+                summary: 'ดึงข้อมูลผู้ใช้ตาม id',
+                parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'integer' } }],
+                responses: {
+                    200: { description: 'ข้อมูลผู้ใช้', content: { 'application/json': { schema: { $ref: '#/components/schemas/User' } } } },
+                    404: { description: 'ไม่พบผู้ใช้', content: { 'application/json': { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+                }
+            },
+            put: {
+                tags: ['Users'],
+                summary: 'แก้ไขข้อมูลผู้ใช้',
+                parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'integer' } }],
+                requestBody: {
+                    required: true,
+                    content: { 'application/json': { schema: { $ref: '#/components/schemas/UserInput' } } }
+                },
+                responses: {
+                    200: { description: 'แก้ไขสำเร็จ', content: { 'application/json': { schema: { $ref: '#/components/schemas/SuccessMessage' } } } }
+                }
+            },
+            delete: {
+                tags: ['Users'],
+                summary: 'ลบผู้ใช้ (cascade ลบ listing  ด้วย)',
+                parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'integer' } }],
+                responses: {
+                    200: { description: 'ลบสำเร็จ', content: { 'application/json': { schema: { $ref: '#/components/schemas/SuccessMessage' } } } }
+                }
+            }
+        },
+        // ─── categories ──────────────────────────────────────────────────────────────
+        '/categories': {
+            get: {
+                tags: ['Categories'],
+                summary: 'ดึงรายชื่อประเภทสินค้าทั้งหมด',
+                responses: {
+                    200: {
+                        description: 'รายชื่อประเภทสินค้า',
+                        content: { 'application/json': { schema: { type: 'array', items: { $ref: '#/components/schemas/Categories' } } } }
+                    }
+                }
+            },
+            post: {
+                tags: ['Categories'],
+                summary: 'สร้างรายชื่อประเภทสินค้าใหม่',
+                requestBody: {
+                    required: true,
+                    content: { 'application/json': { schema: { $ref: '#/components/schemas/CategoriesInput' } } }
+                },
+                responses: {
+                    200: { description: 'สร้างสำเร็จ', content: { 'application/json': { schema: { $ref: '#/components/schemas/SuccessMessage' } } } },
+                    400: { description: 'ข้อมูลไม่ครบ', content: { 'application/json': { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+                }
+            }
+        },
+        '/categories/{id}': {
+            get: {
+                tags: ['Categories'],
+                summary: 'ดึงข้อมูลประเภทสินค้าพร้อม รายชื่อ ทั้งหมด',
+                parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'integer' } }],
+                responses: {
+                    200: {
+                        description: 'ข้อมูลประเภทสินค้า',
+                        content: {
+                            'application/json': {
+                                schema: {
+                                    allOf: [
+                                        { $ref: '#/components/schemas/Categories' },
+                                        { type: 'object', properties: { tasks: { type: 'array', items: { $ref: '#/components/schemas/Listings' } } } }
+
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
 
+
+    }
 
 }
 module.exports = spec
