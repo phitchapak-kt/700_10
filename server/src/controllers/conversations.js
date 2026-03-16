@@ -58,7 +58,7 @@ const remove = async (req, res, next) => {
         const result = await ConversationsModel.remove(req.params.id)
 
         if (result.affectedRows === 0) {
-            return res.status(404).json({ message: 'ไม่พบ lconversations' })
+            return res.status(404).json({ message: 'ไม่พบ conversations' })
         }
         res.json({ message: 'delete ok', data: result })
     } catch (error) {

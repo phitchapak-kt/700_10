@@ -109,8 +109,8 @@ const spec = {
                 properties: {
                     id: { type: 'integer', example: 1 },
                     listing_id: { type: 'integer', example: 1 },
-                    buyer_id: { type: 'integer', example: 1 },
-                    seller_id: { type: 'integer', example: 2 },
+                    buyer_id: { type: 'integer', example: 2 },
+                    seller_id: { type: 'integer', example: 1 },
                     created_at: { type: 'string', format: 'date-time' }
                 }
             },
@@ -119,8 +119,8 @@ const spec = {
                 required: ['listing_id', 'buyer_id', 'seller_id'],
                 properties: {
                     listing_id: { type: 'integer', example: 1 },
-                    buyer_id: { type: 'integer', example: 1 },
-                    seller_id: { type: 'integer', example: 2 }
+                    buyer_id: { type: 'integer', example: 2 },
+                    seller_id: { type: 'integer', example: 1}
                 }
             },
             Messages: {

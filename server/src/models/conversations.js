@@ -4,13 +4,13 @@ const findAll = async () => {
     const conn = await getConnection()
     const [rows] = await conn.query(`
         SELECT conversations.*,
-            listing.title AS listings_title,
+            listings.title AS listing_title,
             buyer.firstname AS  buyer_firstname,
             buyer.lastname AS  buyer_lastname,
             seller.firstname AS  seller_firstname,
             seller.lastname AS  seller_lastname
         FROM conversations
-        JOIN categories ON conversations.listing_id = listings.id
+        JOIN listings ON conversations.listing_id = listings.id
         JOIN users AS buyer ON conversations.buyer_id = buyer.id
         JOIN users AS seller ON conversations.seller_id = seller.id
         ORDER BY conversations.created_at DESC
@@ -23,13 +23,13 @@ const findById = async (id) => {
     const conn = await getConnection()
     const [rows] = await conn.query(`
         SELECT conversations.*,
-            listing.title AS listings_title,
+            listings.title AS listing_title,
             buyer.firstname AS  buyer_firstname,
             buyer.lastname AS  buyer_lastname,
             seller.firstname AS  seller_firstname,
             seller.lastname AS  seller_lastname
         FROM conversations
-        JOIN categories ON conversations.listing_id = listings.id
+        JOIN listings ON conversations.listing_id = listings.id
         JOIN users AS buyer ON conversations.buyer_id = buyer.id
         JOIN users AS seller ON conversations.seller_id = seller.id
         WHERE conversations.id = ?

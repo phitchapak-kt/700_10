@@ -47,11 +47,18 @@ const create = async (req, res, next) => {
 
 const update = async (req, res, next) => {
     try {
-        const result = await Listing_imagesModel.update(req.params.id, req.body)
+        const { listing_id, image_order } = req.body
         const image_url = req.file ? req.file.filename : null
         if (!image_url) {
             return res.status(400).json({ message: 'กรุณาแนบรูปภาพ' })
         }
+
+         const result = await Listing_imagesModel.update(req.params.id, {
+            listing_id,
+            image_url,
+            image_order
+        })
+
 
         res.json({ message: 'update ok', data: result })
     } catch (error) {
