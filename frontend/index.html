@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS SHOP</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+
+<body>
+    <nav>
+        <div class="logo">JS SHOP</div>
+        <a href="./pages/categories/index.html"> หมวดหมู่</a> 
+        <a href="./pages/listings/index.html"> + ลงประกาศ</a>
+        <a href="./pages/users/index.html"> เข้าสู่ระบบ</a>
+
+    </nav>
+
+    <div class="container">
+        <div style="text-align: center; padding: 40px 0 32px;">
+            <h1>ระบบแลกเปลี่ยนสินค้ามือสอง</h1>
+            <p>ลงประกาศขายหรือแลกสินค้า ค้นหาและติดต่อผู้ขายได้เลย</p>
+
+
+            <input id="search" type="text" placeholder="🔍 ค้นหาสินค้า..." class="hero-search">
+
+
+        </div>
+    </div>
+
+    <div class="card-menu">
+
+        <a href="./pages/listings/index.html" class="menu-card">
+            <div class="menu-card">📢</div>
+            <p class="menu-title">ลงประกาศ</p>
+            <p class="menu-desc">ลงขายหรือแลกสินค้า</p>
+        </a>
+
+        <a href="./pages/categories/index.html" class="menu-card">
+            <div class="menu-icon">📂</div>
+            <div class="menu-title">หมวดหมู่</div>
+            <div class="menu-desc">จัดการหมวดหมู่สินค้า</div>
+        </a>
+
+
+       
+        <a href="./pages/conversations/ " class="menu-card">
+            <div class="menu-icon">💬</div>
+            <p class="menu-title">ข้อความ</p>
+            <p class="menu-desc">ติดต่อผู้ขายผ่านระบบ</p>
+        </a>
+
+        <a href="./pages/saved_listings/index.html" class="menu-card">
+            <div class="menu-icon">❤️</div>
+            <p class="menu-title">บันทึกสินค้า</p>
+            <p class="menu-desc">สินค้าที่บันทึกไว้</p>
+        </a>
+
+    </div>
+
+    <div class="container">
+        <h2>สินค้าล่าสุด</h2>
+        <div id="listings"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="./js/api.js"></script>
+
+</body>
+</html>

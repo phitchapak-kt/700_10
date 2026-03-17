@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เข้าสู่ระบบ</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body>
+
+    <nav>
+        <a href="../../index.html">หน้าแรก</a>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <div class="page-title">สมัครสมาชิก</div>
+        </div>
+
+        <input type="text" id ="firstname" placeholder="ชื่อ">
+        <input type="text" id ="lastname" placeholder="นามสกุล">
+        <input type="email" id ="email" placeholder="อีเมล">
+        <input type="password" id ="password" placeholder="รหัสผ่าน">
+        <input type="text" id ="phone" placeholder="เบอร์โทร 10 หลัก">
+        <button id="button-submit">สมัครสมาชิก</button>
+
+        <div id="message"></div>
+        <div id="user"></div>
+
+        <div id="popup" style="display:none">
+            <h3>แก้ไขข้อมูล</h3>
+            <input type="text" id="edit-firstname" placeholder="ชื่อ">
+            <input type="text" id="edit-lastname" placeholder="นามสกุล">
+            <input type="email" id="edit-email" placeholder="อีเมล">
+            <input type="text" id="edit-password" placeholder="รหัสผ่าน">
+            <input type="text" id="edit-phone" placeholder="เบอร์โทร 10 หลัก">
+            <button id="button-save">บันทึก</button>
+            <button id="button-cancel">ยกเลิก</button>
+        </div>
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="../../js/api.js"></script>
+    <script src="./index.js"></script>
+
+</body>
+</html>
+
+

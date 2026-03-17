@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>จัดหมวดหมู่</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body>
+
+    <nav>
+        <a href="../../index.html">หน้าแรก</a>
+
+    </nav>
+
+    <div class="container">
+        <div class="page-title">จัดหมวดหมู่</div>
+    </div>
+    
+    <input type="text" id ="name" placeholder="ชื่อหมวดหมู่">
+    <button id="button-submit">เพิ่ม</button>
+
+    <div id="message"></div>
+    <div id="categories"></div>
+    
+    <div id="popup" style="display:none">
+            <h3>แก้ไขข้อมูล</h3>
+            <input type="text" id="edit-name" placeholder="ชื่อหมวดหมู่">
+            <button id="button-save">บันทึก</button>
+            <button id="button-cancel">ยกเลิก</button>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="../../js/api.js"></script>
+    <script src="./index.js"></script>
+
+
+</body>
+</html>

@@ -1,5 +1,3 @@
-const { get, post, response, put } = require("./app")
-
 const spec = {
     openapi: '3.0.0',
     info: {
