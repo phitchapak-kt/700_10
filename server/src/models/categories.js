@@ -2,7 +2,7 @@ const { getConnection } = require('../config/db')
 
 const findAll = async () => {
     const conn = await getConnection()
-    const [rows] = await conn.query('SELECT * FROM categories')
+    const [rows] = await conn.query('SELECT * FROM categories ORDER BY id DESC')
     return rows
 }
 
@@ -25,10 +25,10 @@ const create = async (data) => {
 
 const update = async (id, data) => {
     const conn = await getConnection()
-    const { name } = data
+    const { name } = data 
     const [result] = await conn.query(
         'UPDATE categories SET name=? WHERE id=?',
-        [name, id]
+        [name,id]
     )
     return result
 
@@ -36,7 +36,10 @@ const update = async (id, data) => {
 
 const remove = async (id) => {
     const conn = await getConnection()
-    const [result] = await conn.query('DELETE FROM categories WHERE id = ?', [parseInt(id)])
+    const [result] = await conn.query(
+        'DELETE FROM categories WHERE id = ?', 
+        [id]
+    )
     return result
 }
 

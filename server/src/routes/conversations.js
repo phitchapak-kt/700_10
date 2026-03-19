@@ -1,12 +1,13 @@
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/conversations')
+const controller = require('../controllers/conversations'); 
 
-router.get('/', controller.getAll)
-router.get('/:id', controller.getById)
-router.post('/', controller.create)
-router.put('/:id', controller.update)
-router.delete('/:id', controller.remove)
+
+router.get('/', controller.getAllConversation)
+router.get('/:id', controller.getConversationById)
+router.post('/', controller.createorGetConversation)
+router.put('/:id', controller.updateConversationStatus)
+router.delete('/:id', controller.removeConversation)
 
 module.exports = router
 

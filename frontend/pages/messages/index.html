@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ข้อความ - JS SHOP</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body>
+
+    <nav>
+        <a href="../../index.html" class="nav-brand">JS SHOP</a>
+        <ul class="nav-links">
+            <li><a href="../../index.html">หน้าแรก</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="chat-wrap">
+
+            <div class="chat-header">
+                <a href="../conversations/index.html" class="chat-back">←</a>
+                <div class="chat-info">
+                    <h3 id="chat-name">...</h3>
+                    <p id="chat-listing">...</p>
+                </div>
+            </div>
+
+            <div class="chat-messages" id="chat-messages"></div>
+
+            <div class="edit-bar" id="edit-bar">
+                <span>✏️ กำลังแก้ไขข้อความ</span>
+                <button id="edit-cancel">✕</button>
+            </div>
+
+            <div class="chat-input-wrap">
+                <input type="text" class="chat-input" id="chat-input" placeholder="พิมพ์ข้อความ...">
+                <button class="btn-send" id="btn-send">ส่ง</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="../../js/api.js"></script>
+    <script src="./index.js"></script>
+
+</body>
+</html>

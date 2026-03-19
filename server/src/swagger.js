@@ -1,3 +1,5 @@
+const { all } = require("./routes/conversations")
+
 const spec = {
     openapi: '3.0.0',
     info: {
@@ -68,7 +70,21 @@ const spec = {
                     status: { type: 'string', example: 'ACTIVE' },
                     user_id: { type: 'integer', example: 1 },
                     created_at: { type: 'string', format: 'date-time' }
+
                 }
+            },
+            Listingwithcategory: {
+                allOf: [
+                    { $ref: '#/components/schemas/Listings' },
+                    {
+                        type: 'object',
+                        properties: {
+                            category_name: { type: 'string' },
+                            firstname: { type: 'string' },
+                            lastname: { type: 'string' }
+                        }
+                    }
+                ]
             },
             ListingsInput: {
                 type: 'object',
@@ -112,13 +128,29 @@ const spec = {
                     created_at: { type: 'string', format: 'date-time' }
                 }
             },
+            ConversationWithMessage: {
+                allOf: [
+                    { $ref: '#/components/schemas/Conversations' },
+                    {
+                        type: 'object',
+                        properties: {
+                            message: {
+                                type: 'array',
+                                items: { $ref: '#/components/schemas/Messages' }
+                            }
+                        }
+
+                    }
+                ]
+
+            },
             ConversationsInput: {
                 type: 'object',
                 required: ['listing_id', 'buyer_id', 'seller_id'],
                 properties: {
                     listing_id: { type: 'integer', example: 1 },
                     buyer_id: { type: 'integer', example: 2 },
-                    seller_id: { type: 'integer', example: 1}
+                    seller_id: { type: 'integer', example: 1 }
                 }
             },
             Messages: {
@@ -131,6 +163,20 @@ const spec = {
                     is_read: { type: 'boolean', example: false },
                     created_at: { type: 'string', format: 'date-time' }
                 }
+            },
+            MessageWithInput: {
+                allOf: [
+                    { $ref: '#/components/schemas/MessagesInput' },
+                    {
+                        type: 'object',
+                        properties: {
+                            id: { type: 'integer', example: 101 },
+                            is_read: { type: 'boolean', example: false, description: 'อ่านหรือยัง' },
+                            created_at: { type: 'string', format: 'date-time' },
+                            updated_at: { type: 'string', format: 'date-time' }
+                        }
+                    }
+                ]
             },
             MessagesInput: {
                 type: 'object',
@@ -149,6 +195,18 @@ const spec = {
                     listing_id: { type: 'integer', example: 2 },
                     created_at: { type: 'string', format: 'date-time' }
                 }
+            },
+            SavedListings: {
+                allOf: [
+                    { $ref: '#/components/schemas/Saved_listingsInput' },
+                    {
+                        type: 'object',
+                        properties: {
+                            id: { type: 'integer', example: 50, description: 'ID ของรายการบันทึกนี้' },
+                            created_at: { type: 'string', format: 'date-time', description: 'เวลาที่กดบันทึก' }
+                        }
+                    }
+                ]
             },
             Saved_listingsInput: {
                 type: 'object',
@@ -435,7 +493,7 @@ const spec = {
                 summary: 'ดึง conversations ทั้งหมด',
                 responses: {
                     200: {
-                        description: 'ช่องแชท',
+                        description: 'รายการช่องแชท',
                         content: { 'application/json': { schema: { type: 'array', items: { $ref: '#/components/schemas/Conversations' } } } }
                     }
                 }
@@ -458,13 +516,13 @@ const spec = {
                 summary: 'ดึง conversations id',
                 parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'integer' } }],
                 responses: {
-                    200: { description: 'ข้อมูล ช่องแชท', content: { 'application/json': { schema: { $ref: '#/components/schemas/Conversations' } } } },
+                    200: { description: 'ข้อมูล ช่องแชท', content: { 'application/json': { schema: { $ref: '#/components/schemas/ConversationWithMessage' } } } },
                     404: { description: 'ไม่พบ ช่องแชท', content: { 'application/json': { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
                 }
             },
             put: {
                 tags: ['Conversations'],
-                summary: 'แก้ไข conversations ทั้งหมด',
+                summary: 'แก้ไข conversations ',
                 parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'integer' } }],
                 requestBody: {
                     required: true,
@@ -547,9 +605,8 @@ const spec = {
                 summary: 'ดึง saved_listings ทั้งหมด',
                 responses: {
                     200: {
-                        description: 'บันทึกประกาศสินค้า',
-                        content: { 'application/json': { schema: { type: 'array', items: { $ref: '#/components/schemas/Saved_listings' } } } }
-
+                        description: 'รายการบันทึกประกาศสินค้า',
+                        content: { 'application/json': { schema: { type: 'array', items: { $ref: '#/components/schemas/SavedListings' } } } }
                     }
                 }
             },
@@ -565,21 +622,26 @@ const spec = {
                 }
             }
         },
-        '/saved_listings/{id}': {
+        '/saved_listings/user/{user_id}': {
             get: {
                 tags: ['Saved_listings'],
-                summary: 'ดึง saved_listings id',
-                parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'integer' } }],
+                summary: 'ดึงรายการที่บันทึกไว้ตาม user_id',
+                parameters: [{ name: 'user_id', in: 'path', required: true, schema: { type: 'integer' } }],
                 responses: {
-                    200: { description: 'ข้อมูล บันทึกประกาศสินค้า', content: { 'application/json': { schema: { $ref: '#/components/schemas/Saved_listings' } } } },
+                    200: {
+                        description: 'ข้อมูล บันทึกประกาศสินค้า',
+                       
+                        content: { 'application/json': { schema: { type: 'array', items: { $ref: '#/components/schemas/SavedListings' } } } }
+                    },
                     404: { description: 'ไม่พบ บันทึกประกาศสินค้า', content: { 'application/json': { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
                 }
+            } 
+        }, 
 
-
-            },
+        '/saved_listings/{id}': { 
             put: {
                 tags: ['Saved_listings'],
-                summary: 'แก้ไข saved_listings ทั้งหมด',
+                summary: 'แก้ไข saved_listings',
                 parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'integer' } }],
                 requestBody: {
                     required: true,
@@ -591,15 +653,14 @@ const spec = {
             },
             delete: {
                 tags: ['Saved_listings'],
-                summary: 'ลบ saved_listings ทั้งหมด',
+                summary: 'ลบ saved_listings (ยกเลิกบันทึก)',
                 parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'integer' } }],
                 responses: {
                     200: { description: 'ลบสำเร็จ', content: { 'application/json': { schema: { $ref: '#/components/schemas/SuccessMessage' } } } }
-
                 }
             }
-        }
-    }
-}
+        } 
+    } 
+} 
 
 module.exports = spec

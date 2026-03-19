@@ -40,6 +40,16 @@ const findById = async (id) => {
 }
 
 
+const findByUsersAndListing = async (listing_id, buyer_id, seller_id) => {
+    const conn = await getConnection()
+    const [rows] = await conn.query(
+        'SELECT * FROM conversations WHERE listing_id = ? AND buyer_id = ? AND seller_id = ?',
+        [listing_id, buyer_id, seller_id]
+    )
+    return rows[0]
+}
+
+
 const create = async (data) => {
     const conn = await getConnection()
     const { listing_id, buyer_id, seller_id } = data
@@ -70,4 +80,4 @@ const remove = async (id) => {
     return result
 }
 
-module.exports = { findAll, findById, create, update, remove }
+module.exports = { findAll, findById,findByUsersAndListing, create, update, remove }

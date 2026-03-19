@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>เข้าสู่ระบบ</title>
+    <title>สมัครสมาชิก</title>
     <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
+
 <body>
 
     <nav>
@@ -13,32 +15,36 @@
     </nav>
 
     <div class="container">
-        <div class="page-header">
-            <div class="page-title">สมัครสมาชิก</div>
+        <div class="register-card">
+            <div class="section-title">📝 สมัครสมาชิก</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>ชื่อ</label>
+                    <input type="text" id="firstname" placeholder="กรอกชื่อ">
+                </div>
+                <div class="form-group">
+                    <label>นามสกุล</label>
+                    <input type="text" id="lastname" placeholder="กรอกนามสกุล">
+                </div>
+                <div class="form-group">
+                    <label>อีเมล</label>
+                    <input type="email" id="email" placeholder="example@email.com">
+                </div>
+                <div class="form-group">
+                    <label>รหัสผ่าน</label>
+                    <input type="password" id="password" placeholder="รหัสผ่าน">
+                </div>
+                <div class="form-group">
+                    <label>เบอร์โทร</label>
+                    <input type="text" id="phone" placeholder="เบอร์โทร 10 หลัก" maxlength="10">
+                </div>
+                <div class="form-group" style="justify-content:flex-end">
+                    <label>&nbsp;</label>
+                    <button class="btn-submit" id="button-submit">➕ สมัครสมาชิก</button>
+                </div>
+            </div>
+            <div id="message"></div>
         </div>
-
-        <input type="text" id ="firstname" placeholder="ชื่อ">
-        <input type="text" id ="lastname" placeholder="นามสกุล">
-        <input type="email" id ="email" placeholder="อีเมล">
-        <input type="password" id ="password" placeholder="รหัสผ่าน">
-        <input type="text" id ="phone" placeholder="เบอร์โทร 10 หลัก">
-        <button id="button-submit">สมัครสมาชิก</button>
-
-        <div id="message"></div>
-        <div id="user"></div>
-
-        <div id="popup" style="display:none">
-            <h3>แก้ไขข้อมูล</h3>
-            <input type="text" id="edit-firstname" placeholder="ชื่อ">
-            <input type="text" id="edit-lastname" placeholder="นามสกุล">
-            <input type="email" id="edit-email" placeholder="อีเมล">
-            <input type="text" id="edit-password" placeholder="รหัสผ่าน">
-            <input type="text" id="edit-phone" placeholder="เบอร์โทร 10 หลัก">
-            <button id="button-save">บันทึก</button>
-            <button id="button-cancel">ยกเลิก</button>
-        </div>
-
-
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
@@ -46,6 +52,5 @@
     <script src="./index.js"></script>
 
 </body>
+
 </html>
-
-

@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `conversation_id`      int(11)                  NOT NULL,
   `sender_id`            int(11)                  NOT NULL,
   `content`              text                     NOT NULL,
-  `is_read`               boolean                  NOT NULL DEFAULT FALSE,
+  `is_read`               boolean                  NOT NULL DEFAULT FALSE,   ////
   `created_at`           timestamp               NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`conversation_id`) REFERENCES `conversations`(`id`) ON DELETE CASCADE,
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;  
 
 
-    -- ตาราง saved_listings การบันทึกสิ่งของ
+    -- ตาราง saved_listings การบันทึกสิ่งของ  
     --  users (1) ──< (many) saved_listings
    
 
@@ -114,4 +114,4 @@ CREATE TABLE IF NOT EXISTS `saved_listings` (
   FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
   FOREIGN KEY (`listing_id`) REFERENCES `listings`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;  
-
+ //เซฟแล้วกดดูได้ modele เรียกใช้

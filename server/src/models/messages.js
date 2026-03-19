@@ -1,6 +1,6 @@
 const { getConnection } = require('../config/db')
 
-const findAll = async () => {
+const findAll = async () => {                                                   //ไม่ต้องก็ได้
     const conn = await getConnection()
     const [rows] = await conn.query(`
         SELECT messages.*,
@@ -16,7 +16,7 @@ const findAll = async () => {
 
 }
 
-const findById = async (id) => {
+const findById = async (id) => {                                                    //มี
     const conn = await getConnection()
     const [rows] = await conn.query(`
         SELECT messages.*,
@@ -34,7 +34,7 @@ const findById = async (id) => {
 }
 
 
-const create = async (data) => {
+const create = async (data) => {                                                    //มี
     const conn = await getConnection()
     const { conversation_id, sender_id, content } = data
     const [result] = await conn.query(
@@ -45,18 +45,16 @@ const create = async (data) => {
 }
 
 
-
 const update = async (id, data) => {
     const conn = await getConnection()
-    const {conversation_id, sender_id, content, is_read=0} = data
+    // mysql2 จะแปลง ข้อความ เป็น is_read: 1  เป็น SQL ให้อัตโนมัติ
     const [result] = await conn.query(
-        'UPDATE  messages SET conversation_id=?, sender_id=? , content=? ,is_read=? WHERE id=?',
-        [conversation_id, sender_id, content, is_read,id]
+        'UPDATE messages SET ? WHERE id = ?',
+        [data, id]
     )
     return result
 }
-
-const remove = async (id) => {
+const remove = async (id) => {                                                      //มี
     const conn = await getConnection()
     const [result] = await conn.query('DELETE FROM messages WHERE id = ?', [parseInt(id)])
     return result

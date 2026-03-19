@@ -43,6 +43,14 @@ const api ={
     remove: (id) => axios.delete(`${BASE_URL}/saved_listings/${id}`)
 },
 
-     
-    
+
 }
+
+const profileLink = document.getElementById('profile-link')
+if (profileLink) {
+    if (!localStorage.getItem('user_id')) {
+        profileLink.style.display = 'none'
+    }
+}
+
+

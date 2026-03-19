@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เข้าสู่ระบบ</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+
+<body>
+
+    <nav>
+        <a href="../../index.html">หน้าแรก</a>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+           
+        </div>
+        <div id="message"></div>
+    </div>
+
+
+    <div class="login-wrap" id="overlay">
+        <div class="popup-card">
+            <div class="popup-title">🔐 เข้าสู่ระบบ</div>
+
+            <div class="popup-form-group">
+                <label for="email">อีเมล</label>
+                <input type="email" id="email" placeholder="อีเมล">
+            </div>
+
+            <div class="popup-form-group">
+                <label for="password">รหัสผ่าน </label>
+                <input type="password" id="password" placeholder="รหัสผ่าน">
+            </div>
+
+            <button class="btn-login" id="btn-login">เข้าสู่ระบบ</button>
+            <div class="popup-msg" id="popup-msg"></div>
+
+        </div>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="../../js/api.js"></script>
+    <script src="./index.js"></script>
+
+</body>
+
+</html>

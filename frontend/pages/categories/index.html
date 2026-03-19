@@ -1,41 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>จัดหมวดหมู่</title>
+    <title>จัดหมวดหมู่ - JS SHOP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
 <body>
 
     <nav>
-        <a href="../../index.html">หน้าแรก</a>
-
+        <a href="../../index.html" class="nav-brand">JS SHOP</a>
+        <ul class="nav-links">
+            <li><a href="../../index.html">หน้าแรก</a></li>
+    
     </nav>
 
     <div class="container">
-        <div class="page-title">จัดหมวดหมู่</div>
-    </div>
-    
-    <input type="text" id ="name" placeholder="ชื่อหมวดหมู่">
-    <button id="button-submit">เพิ่ม</button>
-
-    <div id="message"></div>
-    <div id="categories"></div>
-    
-    <div id="popup" style="display:none">
-            <h3>แก้ไขข้อมูล</h3>
-            <input type="text" id="edit-name" placeholder="ชื่อหมวดหมู่">
-            <button id="button-save">บันทึก</button>
-            <button id="button-cancel">ยกเลิก</button>
+        <div class="page-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">หน้าแรก</a>
+                <span>›</span>
+                <span>จัดหมวดหมู่</span>
+            </div>
+            <div class="page-title">
+                <span>📁</span>
+                จัดการหมวดหมู่
+            </div>
+            <div class="page-subtitle">เพิ่ม แก้ไข หรือลบหมวดหมู่สินค้าของคุณ</div>
         </div>
 
+        <div class="card">
+            <div class="card-header">
+                <span>✨</span>
+                <h2>เพิ่มหมวดหมู่ใหม่</h2>
+            </div>
+            <div class="card-body">
+                <div class="add-form">
+                    <div class="input-group">
+                        <span class="input-icon">🏷️</span>
+                        <input type="text" id="name" placeholder="ชื่อหมวดหมู่ เช่น อิเล็กทรอนิกส์, เสื้อผ้า ...">
+                    </div>
+                    <button class="btn btn-primary" id="button-submit">+ เพิ่ม</button>
+                </div>
+                <div class="message" id="message"></div>
+            </div>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stats-count">หมวดหมู่ทั้งหมด <strong id="total-count">-</strong> รายการ</div>
+        </div>
+
+        <div class="table-card">
+            <div id="categories">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>ชื่อหมวดหมู่</th>
+                            <th>จัดการ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="categories-body"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT MODAL -->
+    <div class="overlay" id="overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">✏️ แก้ไขหมวดหมู่</div>
+                <button class="modal-close" id="button-cancel">✕</button>
+            </div>
+            <div class="modal-label">ชื่อหมวดหมู่</div>
+            <div class="input-group">
+                <span class="input-icon">🏷️</span>
+                <input type="text" id="edit-name" placeholder="ชื่อหมวดหมู่">
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-ghost" id="button-cancel-2">ยกเลิก</button>
+                <button class="btn btn-primary" id="button-save">💾 บันทึก</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONFIRM DELETE -->
+    <div class="confirm-overlay" id="confirm-overlay">
+        <div class="confirm-box">
+            <div class="confirm-icon">🗑️</div>
+            <div class="confirm-title">ยืนยันการลบ?</div>
+            <div class="confirm-text">คุณต้องการลบหมวดหมู่ <span class="confirm-name" id="confirm-cat-name"></span> ใช่หรือไม่?</div>
+            <div class="confirm-actions">
+                <button class="btn btn-ghost" id="confirm-cancel">ยกเลิก</button>
+                <button class="btn btn-danger" id="confirm-delete">ลบเลย</button>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script src="../../js/api.js"></script>
     <script src="./index.js"></script>
-
 
 </body>
 </html>

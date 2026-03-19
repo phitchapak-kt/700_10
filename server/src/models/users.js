@@ -12,6 +12,13 @@ const findById = async (id) => {
     return rows[0]
 }
 
+
+const findByEmail =async (email) => {
+    const conn = await getConnection()
+    const [rows] = await conn.query('SELECT * FROM users WHERE email = ?',[email])
+    return rows[0]
+}
+
 const create = async (data) => {
     const conn = await getConnection()
     const { firstname, lastname, email, password, phone } = data
@@ -39,4 +46,6 @@ const remove = async (id) => {
   return result
 }
 
-module.exports = { findAll, findById, create, update, remove }
+
+
+module.exports = { findAll , findById , findByEmail ,create, update, remove }

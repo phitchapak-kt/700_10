@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรไฟล์ของฉัน</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+
+<body>
+
+   
+    <nav class="navbar">
+         <a href="../../index.html">หน้าแรก</a>
+        <button class="btn-logout" id="btn-logout">ออกจากระบบ</button>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>โปรไฟล์ของฉัน</h1>
+            <span class="badge" id="user-role">User</span>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-header-left">
+                    <div class="card-icon">👤</div>
+                    <span class="card-title">ข้อมูลของฉัน</span>
+                </div>
+                <button class="btn-edit" id="btn-edit">✏️ แก้ไข</button>
+            </div>
+            <div class="info-row">
+                <span class="info-label">ชื่อ</span>
+                <span class="info-value" id="display-firstname">-</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">นามสกุล</span>
+                <span class="info-value" id="display-lastname">-</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">อีเมล</span>
+                <span class="info-value" id="display-email">-</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">เบอร์โทร</span>
+                <span class="info-value" id="display-phone">-</span>
+            </div>
+        </div>
+
+        <div class="card card-delete">
+            <div class="card-header-left">
+                <div class="card-icon">🗑️</div>
+                <span class="card-title">ลบบัญชี</span>
+            </div>
+            <div class="delete-body">
+                <p class="delete-warning">
+                    เมื่อลบบัญชีแล้ว <span>ข้อมูลทั้งหมดจะหายไปถาวร</span><br>และไม่สามารถกู้คืนได้
+                </p>
+                <button class="btn-delete-account" id="btn-delete-account">ลบบัญชีของฉัน</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="edit-overlay">
+        <div class="modal">
+            <h2>แก้ไขข้อมูล</h2>
+            <div class="form-group">
+                <label>ชื่อ</label>
+                <input type="text" id="edit-firstname" />
+            </div>
+            <div class="form-group">
+                <label>นามสกุล</label>
+                <input type="text" id="edit-lastname" />
+            </div>
+            <div class="form-group">
+                <label>อีเมล</label>
+                <input type="email" id="edit-email" />
+            </div>
+            <div class="form-group">
+                <label>เบอร์โทร</label>
+                <input type="text" id="edit-phone" />
+            </div>
+            <div class="form-group">
+                <label>รหัสผ่านใหม่ (ถ้าต้องการเปลี่ยน)</label>
+                <input type="password" id="edit-password" placeholder="เว้นว่างถ้าไม่ต้องการเปลี่ยน" />
+            </div>
+            <div class="modal-actions">
+                <button class="btn-cancel" id="btn-cancel">ยกเลิก</button>
+                <button class="btn-save" id="btn-save">บันทึก</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="../../js/api.js"></script>
+    <script src="./index.js"></script>
+
+</body>
+
+</html>

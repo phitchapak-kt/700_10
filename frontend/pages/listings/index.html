@@ -1,52 +1,218 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ลงประกาศ</title>
+    <title>ลงประกาศ - JS SHOP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
 <body>
 
+    <!-- NAV บาร์ด้านบน -->
     <nav>
-        <a href="../../index.html">หน้าแรก</a>
-
+        <a href="../../index.html" class="nav-brand">JS SHOP</a>
+        <ul class="nav-links">
+            <li><a href="../../index.html">หน้าแรก</a></li>
+            <li><a href="#">สมัครสมาชิก</a></li>
+            <li><a href="#">เข้าสู่ระบบ</a></li>
+        </ul>
     </nav>
 
     <div class="container">
-        <div class="page-title">ลงประกาศ</div>
-    </div>
-    
-    <input type="text" id ="title" placeholder="ชื่อสินค้า">
-    <input type="text" id ="description" placeholder="รายละเอียด">
-    <input type="text" id ="price" placeholder="ราคา">
-    <input type="text" id="category_id" placeholder="หมวดหมู่">
-    <input type="text" id ="type" placeholder="ประเภท">
-    <input type="text" id ="status" placeholder="สถานะ">
-    <input type="hidden" id="user_id">
-    <button id="button-submit">ลงประกาศ</button>
 
-    <div id="message"></div>
-    <div id="listings"></div>
-    
-    <div id="popup" style="display:none">
-            <h3>แก้ไขข้อมูล</h3>
-            <input type="text" id="edit-title" placeholder="ชื่อสินค้า">
-            <input type="text" id="edit-description" placeholder="รายละเอียด">
-            <input type="text" id="edit-price" placeholder="ราคา">
-            <input type="text" id="edit-category_id" placeholder="หมวดหมู่">
-            <input type="text" id="edit-type" placeholder="ประเภท">
-            <input type="text" id="edit-status" placeholder="สถานะ">
-            <button id="button-save">บันทึก</button>
-            <button id="button-cancel">ยกเลิก</button>
+        <!-- หัวหน้า + breadcrumb -->
+        <div class="page-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">หน้าแรก</a>
+                <span>›</span>
+                <span>ลงประกาศ</span>
+            </div>
+            <div class="page-title">
+                <span>📢</span>
+                ลงประกาศสินค้า
+            </div>
+            <div class="page-subtitle">ลงขายหรือแลกเปลี่ยนสินค้ามือสองของคุณ</div>
         </div>
 
+        <!-- ฟอร์มลงประกาศ -->
+        <div class="card">
+            <div class="card-header">
+                <span>✨</span>
+                <h2>ข้อมูลสินค้า</h2>
+            </div>
+            <div class="card-body">
+                <div class="form-grid">
+
+                    <!-- ชื่อสินค้า เต็มแถว -->
+                    <div class="form-field full">
+                        <label class="form-label">ชื่อสินค้า</label>
+                        <div class="input-group">
+                            <span class="input-icon">🏷️</span>
+                            <input type="text" id="title" placeholder="เช่น iPhone 13 Pro Max 256GB สีดำ">
+                        </div>
+                    </div>
+
+                    <!-- รายละเอียด เต็มแถว -->
+                    <div class="form-field full">
+                        <label class="form-label">รายละเอียด</label>
+                        <textarea id="description" placeholder="อธิบายสภาพสินค้า อุปกรณ์ที่มีมาด้วย ฯลฯ" rows="3"></textarea>
+                    </div>
+
+                    <!-- ราคา / หมวดหมู่ → 2 คอลัมน์ -->
+                    <div class="form-field">
+                        <label class="form-label">ราคา (บาท)</label>
+                        <div class="input-group">
+                            <span class="input-icon">💰</span>
+                            <input type="number" id="price" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label class="form-label">หมวดหมู่</label>
+                        <div class="input-group">
+                            <span class="input-icon">📁</span>
+                            <input type="text" id="category_id" placeholder="ID หมวดหมู่">
+                        </div>
+                    </div>
+
+                    <!-- ประเภท / สถานะ → 2 คอลัมน์ -->
+                    <div class="form-field">
+                        <label class="form-label">ประเภท</label>
+                        <div class="select-wrap">
+                            <select id="type">
+                                <option value="">-- เลือกประเภท --</option>
+                                <option value="SELL">ขาย</option>
+                                <option value="EXCHANGE">แลกเปลี่ยน</option>
+                            </select>
+                            <span class="select-arrow">▾</span>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label class="form-label">สถานะ</label>
+                        <div class="select-wrap">
+                            <select id="status">
+                                <option value="">-- เลือกสถานะ --</option>
+                                <option value="ACTIVE">เปิดใช้งาน</option>
+                                <option value="INACTIVE">ปิดใช้งาน</option>
+                                <option value="SOLD">ขายแล้ว</option>
+                            </select>
+                            <span class="select-arrow">▾</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- hidden เก็บ user_id จาก localStorage -->
+                <input type="hidden" id="user_id">
+
+                <div class="form-actions">
+                    <div class="message" id="message"></div>
+                    <button class="btn btn-primary" id="button-submit">📢 ลงประกาศ</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- หัวตาราง + จำนวน -->
+        <div class="stats-bar">
+            <div class="stats-count">ประกาศของฉัน <strong id="total-count">-</strong> รายการ</div>
+        </div>
+
+        <!-- ตารางแสดงประกาศของตัวเอง -->
+        <div class="table-card">
+            <div id="listings">
+                <!-- JS จะ render ตารางตรงนี้ -->
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODAL แก้ไข -->
+    <div class="overlay" id="popup" style="display:none">
+        <div class="modal modal-lg">
+            <div class="modal-header">
+                <div class="modal-title">✏️ แก้ไขประกาศ</div>
+                <button class="modal-close" id="button-cancel">✕</button>
+            </div>
+
+            <div class="form-grid">
+                <div class="form-field full">
+                    <label class="form-label">ชื่อสินค้า</label>
+                    <div class="input-group">
+                        <span class="input-icon">🏷️</span>
+                        <input type="text" id="edit-title" placeholder="ชื่อสินค้า">
+                    </div>
+                </div>
+                <div class="form-field full">
+                    <label class="form-label">รายละเอียด</label>
+                    <textarea id="edit-description" placeholder="รายละเอียด" rows="3"></textarea>
+                </div>
+                <div class="form-field">
+                    <label class="form-label">ราคา (บาท)</label>
+                    <div class="input-group">
+                        <span class="input-icon">💰</span>
+                        <input type="number" id="edit-price" placeholder="0">
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label class="form-label">หมวดหมู่</label>
+                    <div class="input-group">
+                        <span class="input-icon">📁</span>
+                        <input type="text" id="edit-category_id" placeholder="ID หมวดหมู่">
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label class="form-label">ประเภท</label>
+                    <div class="select-wrap">
+                        <select id="edit-type">
+                            <option value="SELL">ขาย</option>
+                            <option value="EXCHANGE">แลกเปลี่ยน</option>
+                        </select>
+                        <span class="select-arrow">▾</span>
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label class="form-label">สถานะ</label>
+                    <div class="select-wrap">
+                        <select id="edit-status">
+                            <option value="ACTIVE">เปิดใช้งาน</option>
+                            <option value="INACTIVE">ปิดใช้งาน</option>
+                            <option value="SOLD">ขายแล้ว</option>
+                        </select>
+                        <span class="select-arrow">▾</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-ghost" id="button-cancel-2">ยกเลิก</button>
+                <button class="btn btn-primary" id="button-save">💾 บันทึก</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONFIRM ลบ -->
+    <div class="confirm-overlay" id="confirm-overlay">
+        <div class="confirm-box">
+            <div class="confirm-icon">🗑️</div>
+            <div class="confirm-title">ยืนยันการลบ?</div>
+            <div class="confirm-text">
+                ต้องการลบประกาศ
+                <span class="confirm-name" id="confirm-listing-name"></span>
+                ใช่หรือไม่?
+            </div>
+            <div class="confirm-actions">
+                <button class="btn btn-ghost" id="confirm-cancel">ยกเลิก</button>
+                <button class="btn btn-danger" id="confirm-delete">ลบเลย</button>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script src="../../js/api.js"></script>
     <script src="./index.js"></script>
-
 
 </body>
 </html>
