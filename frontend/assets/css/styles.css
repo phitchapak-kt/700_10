@@ -589,3 +589,84 @@ tbody td { padding: 1rem 1.25rem; font-size: 0.9rem; color: var(--text-primary);
     transition: transform 0.2s;
 }
 .btn-save-listing:hover { transform: scale(1.3); }
+
+
+/* ─── Chat Bubbles ────────────────────────────── */
+.msg {
+    display: flex;
+    flex-direction: column;
+    max-width: 70%;
+}
+.msg.mine {
+    align-self: flex-end;
+    align-items: flex-end;
+}
+.msg.other {
+    align-self: flex-start;
+    align-items: flex-start;
+}
+.msg-bubble {
+    padding: 10px 14px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    word-break: break-word;
+}
+.msg.mine .msg-bubble {
+    background: var(--accent);
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+.msg.other .msg-bubble {
+    background: white;
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    border-bottom-left-radius: 4px;
+}
+.msg-time {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    padding: 0 4px;
+}
+.msg-actions {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.edit-bar {
+    display: none;
+}
+.edit-bar.active {
+    display: flex;
+}
+
+/* ─── Saved Listings ──────────────────────────── */
+.saved-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+.saved-item {
+    background: var(--white);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: box-shadow 0.2s;
+}
+.saved-item:hover { box-shadow: var(--shadow); }
+.saved-title {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+.saved-price {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent);
+}

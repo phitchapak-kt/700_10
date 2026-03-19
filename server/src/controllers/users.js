@@ -26,7 +26,7 @@ const validateUser = (data) => {
   return errors
 }
 
-// ✅ เพิ่มตัวนี้
+
 const validateUserUpdate = (data) => {
   const errors = []
   if (!data.firstname) errors.push('กรุณากรอกชื่อ')

@@ -9,8 +9,7 @@ const getAllSave = async (req, res, next) => {
     }
 }
 
-// 2. ดึงรายการที่ User คนหนึ่งบันทึกไว้ (ใช้บ่อยที่สุด)
-// รองรับ GET /saved-posts/user/:user_id
+// บันทึกบ่อย
 const getByUserSaveId = async (req, res, next) => {
     try {
         const { user_id } = req.params
@@ -30,7 +29,7 @@ const createSave = async (req, res, next) => {
             return res.status(400).json({ message: 'กรุณาระบุ user_id และ listing_id' })
         }
 
-        // (Option) เช็คก่อนว่าเคยเซฟหรือยัง เพื่อไม่ให้เกิด Error ใน DB
+        //  เช็ค
         const existing = await Saved_listingsModel.checkDuplicate(user_id, listing_id)
         if (existing) {
             return res.status(400).json({ message: 'คุณบันทึกประกาศนี้ไปแล้ว' })
@@ -47,16 +46,16 @@ const createSave = async (req, res, next) => {
 
 const removeSave = async (req, res, next) => {
     try {
-        const { user_id, listing_id } = req.body || {} // รับจาก body สำหรับปุ่มกด Unsave
+        const { user_id, listing_id } = req.body || {} 
         
-        // ถ้าส่งมาเป็น ID ของแถว (req.params.id)
+        
         const id = req.params.id 
         
         let result;
         if (id) {
             result = await Saved_listingsModel.remove(id)
         } else {
-            // ลบโดยใช้คู่ user_id และ listing_id
+            
             result = await Saved_listingsModel.removeByPair(user_id, listing_id)
         }
 

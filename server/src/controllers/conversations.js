@@ -2,8 +2,8 @@ const ConversationsModel = require('../models/conversations')
 
 const getAllConversation = async (req, res, next) => {
     try {
-        const data = await ConversationsModel.findAll() // ดึงมาจาก Model
-        res.json(data) // ส่งออกไปทั้งก้อน (Array of Objects)
+        const data = await ConversationsModel.findAll() 
+        res.json(data) 
     } catch (error) {
         next(error)
     }
@@ -23,12 +23,12 @@ const createorGetConversation = async (req, res, next) => {                     
             return res.status(400).json({ message: 'กรอกข้อมูลไม่ครบ', errors })
         }
 
-        // 🔍 เช็คว่ามีห้องนี้อยู่แล้วไหม
+        //  เช็คว่ามีห้อง
         const existing = await ConversationsModel.findByUsersAndListing(
-            listing_id,
-            buyer_id,
-            seller_id
+            listing_id, buyer_id,  seller_id
         )
+
+
         if (existing) {
             return res.json({
                 message: 'มีห้องอยู่แล้ว',
@@ -69,7 +69,7 @@ const getConversationById = async (req, res, next) => {
     }
 }
 
-// อัปเดตสถานะ (ปิดดีล / ยกเลิก)
+// อัปเดตสถานะ 
 
 const updateConversationStatus = async (req, res, next) => {
     try {

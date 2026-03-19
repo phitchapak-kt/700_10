@@ -26,6 +26,7 @@ const handleAdd = async () => {
     const btn = document.getElementById('button-submit')
     btn.textContent = 'กำลังเพิ่ม...'
     btn.disabled = true
+    
     try {
         await api.categories.create({ name })
         input.value = ''

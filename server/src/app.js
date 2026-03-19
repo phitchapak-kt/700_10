@@ -17,7 +17,7 @@ app.use('/conversations', require('./routes/conversations'))
 app.use('/messages', require('./routes/messages'))
 app.use('/saved_listings', require('./routes/saved_listings'))
 
-app.use('/uploads', express.static('uploads'))
+
 
 app.get('/api-docs/spec', (req, res) => res.json(swaggerSpec))
 app.get('/api-docs', (req, res) => res.sendFile(path.join(__dirname, 'swagger-ui.html')))

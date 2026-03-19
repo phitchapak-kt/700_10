@@ -24,7 +24,7 @@ const getById = async (req, res, next) => {
   }
 }
 
-const createCategory = async (req, res, next) => {   //// (admin) เพิ่มหมวด
+const createCategory = async (req, res, next) => {   // เพิ่มหมวด
   try {
 
     const { name} = req.body
@@ -48,7 +48,7 @@ const updateCategory = async (req, res, next) => {            // แก้ไข
      const { name } = req.body
 
 
-     // 🔥 เพิ่ม validation
+   
     if (!name) {
       return res.status(400).json({ message: 'กรุณากรอกชื่อ categories' })
     }

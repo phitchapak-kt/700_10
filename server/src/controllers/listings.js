@@ -53,7 +53,7 @@ const update = async (req, res, next) => {
 }
 
 
-const remove = async (req, res, next) => {
+const remove = async (req, res, next) => {  //ลบid
   try {
     const result = await ListingsModel.remove(req.params.id)
     res.json({ message: 'delete ok', data: result })
