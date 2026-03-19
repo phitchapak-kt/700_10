@@ -51,19 +51,6 @@ CREATE TABLE IF NOT EXISTS `listings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;  
 
 
--- ตาราง listing_images รูปภาพสินค้า
--- listings (1) ──< (many) listing_images
-
-CREATE TABLE IF NOT EXISTS `listing_images` (
-  `id`         int(11)      NOT NULL AUTO_INCREMENT,
-  `listing_id` int(11)      NOT NULL,
-  `image_url`  VARCHAR(255)   NOT NULL,
-  `image_order`  int(11)      NOT NULL DEFAULT 0,
-  `created_at` timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`listing_id`) REFERENCES `listings`(`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 
     -- ตาราง conversations / ช่องแชท
     --  users (1) ──< (many) conversations

@@ -38,7 +38,7 @@ const api ={
     },
     saved_listings: {
     getAll: () => axios.get(`${BASE_URL}/saved_listings`),
-    getById: (id) => axios.get(`${BASE_URL}/saved_listings/${id}`),
+    getByUserId: (userId) => axios.get(`${BASE_URL}/saved_listings/user/${userId}`),
     create: (data) => axios.post(`${BASE_URL}/saved_listings`, data),
     remove: (id) => axios.delete(`${BASE_URL}/saved_listings/${id}`)
 },

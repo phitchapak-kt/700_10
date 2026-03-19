@@ -12,11 +12,6 @@ INSERT INTO `listings` (`title`,`description`,`price`,`category_id`,`type`,`stat
 ('เมาส์ไร้สาย','ซื้อมาผิดสี อยากแลกเปลี่ยนเป็น สีดำ',200,2,'EXCHANGE','ACTIVE',2);
 
 
-INSERT INTO `listing_images` (`listing_id`,`image_url`,`image_order`) VALUES
-(1,'iphone.jpg',1),
-(2,'mouse.jpg',1);
-
-
 INSERT INTO `conversations` (`listing_id`,`buyer_id`,`seller_id`) VALUES
 (1,2,1);
 

@@ -24,7 +24,7 @@ const getByUserSaveId = async (req, res, next) => {
 
 const createSave = async (req, res, next) => {
     try {
-        const { user_id, listing_id } = req.body
+        const { user_id, listing_id } = req.body || {}
         
         if (!user_id || !listing_id) {
             return res.status(400).json({ message: 'กรุณาระบุ user_id และ listing_id' })
@@ -47,7 +47,7 @@ const createSave = async (req, res, next) => {
 
 const removeSave = async (req, res, next) => {
     try {
-        const { user_id, listing_id } = req.body // รับจาก body สำหรับปุ่มกด Unsave
+        const { user_id, listing_id } = req.body || {} // รับจาก body สำหรับปุ่มกด Unsave
         
         // ถ้าส่งมาเป็น ID ของแถว (req.params.id)
         const id = req.params.id 

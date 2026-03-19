@@ -11,7 +11,7 @@
 <body>
     <nav>
         <div class="logo">JS SHOP</div>
-        <a href="./pages/categories/index.html"> หมวดหมู่</a> 
+        <a href="./pages/categories/index.html"> หมวดหมู่</a>
         <a href="./pages/listings/index.html"> + ลงประกาศ</a>
         <a href="./pages/users/index.html"> สมัครสมาชิก</a>
         <a href="./pages/login/index.html"> เข้าสู่ระบบ</a>
@@ -24,8 +24,17 @@
             <h1>ระบบแลกเปลี่ยนสินค้ามือสอง</h1>
             <p>ลงประกาศขายหรือแลกสินค้า ค้นหาและติดต่อผู้ขายได้เลย</p>
 
+            <div class="search-wrapper">
+                <input id="search" type="text" placeholder="🔍 ค้นหาสินค้า..." class="hero-search">
+                <div id="search-dropdown" class="search-dropdown"></div>
+            </div>
 
-            <input id="search" type="text" placeholder="🔍 ค้นหาสินค้า..." class="hero-search">
+            <div class="category-filter-wrap">
+                <select id="category-filter" class="category-select">
+                    <option value="">-- ทุกหมวดหมู่ --</option>
+                </select>
+            </div>
+
 
 
         </div>
@@ -46,7 +55,7 @@
         </a>
 
 
-       
+
         <a href="./pages/conversations/index.html" class="menu-card">
             <div class="menu-icon">💬</div>
             <p class="menu-title">ข้อความ</p>
@@ -68,6 +77,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script src="./js/api.js"></script>
+    <script src="./pages/search/index.js"></script>
+
 
 </body>
+
 </html>

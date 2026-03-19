@@ -10,7 +10,6 @@
 </head>
 <body>
 
-    <!-- NAV บาร์ด้านบน -->
     <nav>
         <a href="../../index.html" class="nav-brand">JS SHOP</a>
         <ul class="nav-links">
@@ -22,7 +21,6 @@
 
     <div class="container">
 
-        <!-- หัวหน้า + breadcrumb -->
         <div class="page-header">
             <div class="breadcrumb">
                 <a href="../../index.html">หน้าแรก</a>
@@ -36,7 +34,6 @@
             <div class="page-subtitle">ลงขายหรือแลกเปลี่ยนสินค้ามือสองของคุณ</div>
         </div>
 
-        <!-- ฟอร์มลงประกาศ -->
         <div class="card">
             <div class="card-header">
                 <span>✨</span>
@@ -45,7 +42,6 @@
             <div class="card-body">
                 <div class="form-grid">
 
-                    <!-- ชื่อสินค้า เต็มแถว -->
                     <div class="form-field full">
                         <label class="form-label">ชื่อสินค้า</label>
                         <div class="input-group">
@@ -54,13 +50,11 @@
                         </div>
                     </div>
 
-                    <!-- รายละเอียด เต็มแถว -->
                     <div class="form-field full">
                         <label class="form-label">รายละเอียด</label>
                         <textarea id="description" placeholder="อธิบายสภาพสินค้า อุปกรณ์ที่มีมาด้วย ฯลฯ" rows="3"></textarea>
                     </div>
 
-                    <!-- ราคา / หมวดหมู่ → 2 คอลัมน์ -->
                     <div class="form-field">
                         <label class="form-label">ราคา (บาท)</label>
                         <div class="input-group">
@@ -69,15 +63,15 @@
                         </div>
                     </div>
 
+                    <!-- ✅ จุดที่ 1 แก้แล้ว -->
                     <div class="form-field">
                         <label class="form-label">หมวดหมู่</label>
-                        <div class="input-group">
-                            <span class="input-icon">📁</span>
-                            <input type="text" id="category_id" placeholder="ID หมวดหมู่">
+                        <div class="select-wrap">
+                            <select id="category_id"></select>
+                            <span class="select-arrow">▾</span>
                         </div>
                     </div>
 
-                    <!-- ประเภท / สถานะ → 2 คอลัมน์ -->
                     <div class="form-field">
                         <label class="form-label">ประเภท</label>
                         <div class="select-wrap">
@@ -105,7 +99,6 @@
 
                 </div>
 
-                <!-- hidden เก็บ user_id จาก localStorage -->
                 <input type="hidden" id="user_id">
 
                 <div class="form-actions">
@@ -115,22 +108,18 @@
             </div>
         </div>
 
-        <!-- หัวตาราง + จำนวน -->
         <div class="stats-bar">
             <div class="stats-count">ประกาศของฉัน <strong id="total-count">-</strong> รายการ</div>
         </div>
 
-        <!-- ตารางแสดงประกาศของตัวเอง -->
         <div class="table-card">
-            <div id="listings">
-                <!-- JS จะ render ตารางตรงนี้ -->
-            </div>
+            <div id="listings"></div>
         </div>
 
     </div>
 
     <!-- MODAL แก้ไข -->
-    <div class="overlay" id="popup" style="display:none">
+    <div class="overlay" id="popup" >
         <div class="modal modal-lg">
             <div class="modal-header">
                 <div class="modal-title">✏️ แก้ไขประกาศ</div>
@@ -156,13 +145,16 @@
                         <input type="number" id="edit-price" placeholder="0">
                     </div>
                 </div>
+
+                <!-- ✅ จุดที่ 2 แก้แล้ว -->
                 <div class="form-field">
                     <label class="form-label">หมวดหมู่</label>
-                    <div class="input-group">
-                        <span class="input-icon">📁</span>
-                        <input type="text" id="edit-category_id" placeholder="ID หมวดหมู่">
+                    <div class="select-wrap">
+                        <select id="edit-category_id"></select>
+                        <span class="select-arrow">▾</span>
                     </div>
                 </div>
+
                 <div class="form-field">
                     <label class="form-label">ประเภท</label>
                     <div class="select-wrap">

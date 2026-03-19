@@ -7,7 +7,6 @@ const findAll = async () => {
             users.firstname AS user_firstname,
             users.lastname AS user_lastname,
             listings.title AS listing_title
-
         FROM saved_listings
         JOIN users ON saved_listings.user_id = users.id
         JOIN listings ON saved_listings.listing_id = listings.id
@@ -22,8 +21,7 @@ const findByUserId = async (user_id) => {
     const [rows] = await conn.query(`
         SELECT saved_listings.*,
             listings.title AS listing_title,
-            listings.price,
-             -- สมมติว่ามีฟิลด์เหล่านี้ในตาราง listings
+            listings.price
         FROM saved_listings
         JOIN listings ON saved_listings.listing_id = listings.id
         WHERE saved_listings.user_id = ?
@@ -70,4 +68,4 @@ const removeByPair = async (user_id, listing_id) => {
     return result
 }
 
-module.exports = { findAll, findByUserId, checkDuplicate , create, removeByPair}
+module.exports = { findAll, findByUserId, checkDuplicate , create, remove, removeByPair}

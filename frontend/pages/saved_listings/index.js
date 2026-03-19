@@ -6,11 +6,8 @@ window.onload = async () => {
 
 const loadData = async (userId) => {
     try {
-        const res = await axios.get(`http://localhost:8000/saved_listings/user/${userId}`)
+        const res = await api.saved_listings.getByUserId(userId)
         const saved = res.data
-
-        // กรองเฉพาะของตัวเอง
-        
 
         document.getElementById('total-count').textContent = saved.length
 
@@ -27,16 +24,14 @@ const loadData = async (userId) => {
         let html = ''
         saved.forEach(item => {
             html += `
-                <div class="card" style="margin-bottom: 12px;">
-                    <div class="card-body" style="display:flex; align-items:center; justify-content:space-between;">
-                        <div>
-                            <div class="td-name">${escapeHtml(item.listing_title)}</div>
-                            <div class="td-desc">฿${Number(item.price || 0).toLocaleString()}</div>
-                        </div>
-                        <button class="btn btn-delete unsave-btn" data-user="${userId}" data-listing="${item.listing_id}">
-                            🗑️ ลบออก
-                        </button>
+                <div class="saved-item">
+                    <div class="saved-info">
+                        <div class="saved-title">${escapeHtml(item.listing_title)}</div>
+                        <div class="saved-price">฿${Number(item.price || 0).toLocaleString()}</div>
                     </div>
+                    <button class="btn btn-delete unsave-btn" data-id="${item.id}">
+                        🗑️ ลบออก
+                    </button>
                 </div>`
         })
 
@@ -44,12 +39,9 @@ const loadData = async (userId) => {
 
         document.querySelectorAll('.unsave-btn').forEach(btn => {
             btn.addEventListener('click', async (e) => {
-                const user_id = e.currentTarget.dataset.user
-                const listing_id = e.currentTarget.dataset.listing
+                const id = e.currentTarget.dataset.id
                 try {
-                    await axios.delete(`http://localhost:8000/saved_listings`, {
-                        data: { user_id, listing_id }
-                    })
+                    await api.saved_listings.remove(id)
                     await loadData(userId)
                 } catch (error) {
                     console.log(error)

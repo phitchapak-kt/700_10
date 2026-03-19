@@ -12,7 +12,6 @@ const spec = {
         { name: 'Users', description: 'จัดการผู้ใช้งาน' },
         { name: 'Categories', description: 'จัดการประเภทสินค้า' },
         { name: 'Listings', description: 'จัดการ ประกาศขาย' },
-        { name: 'Listing_images', description: 'จัดการ รูปสินค้า' },
         { name: 'Conversations', description: 'จัดการ ช่องแชท' },
         { name: 'Messages', description: 'จัดการ คุยข้อความ' },
         { name: 'Saved_listings', description: 'จัดการ บันทึกสินค้า' }
@@ -97,25 +96,6 @@ const spec = {
                     type: { type: 'string', enum: ['SELL', 'EXCHANGE'], example: 'SELL' },
                     status: { type: 'string', enum: ['ACTIVE', 'SOLD', 'CLOSED'], example: 'ACTIVE' },
                     user_id: { type: 'integer', example: 1 }
-                }
-            },
-            Listing_images: {
-                type: 'object',
-                properties: {
-                    id: { type: 'integer', example: 1 },
-                    listing_id: { type: 'integer', example: 1 },
-                    image_url: { type: 'string', example: 'iphone.jpg' },
-                    image_order: { type: 'integer', example: 1 },
-                    created_at: { type: 'string', format: 'date-time' }
-                }
-            },
-            Listing_imagesInput: {
-                type: 'object',
-                required: ['listing_id', 'image', 'image_order'],
-                properties: {
-                    listing_id: { type: 'integer', example: 1 },
-                    image: { type: 'string', format: 'binary' },
-                    image_order: { type: 'integer', example: 1 }
                 }
             },
             Conversations: {
@@ -410,79 +390,6 @@ const spec = {
                 parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'integer' } }],
                 responses: {
                     200: { description: 'ลบสำเร็จ', content: { 'application/json': { schema: { $ref: '#/components/schemas/SuccessMessage' } } } }
-                }
-            }
-        },
-        // ─── listing_images ─────────────────────────────────────────────────────────────────
-        '/listing_images': {
-            get: {
-                tags: ['Listing_images'],
-                summary: 'ดึง Listing_images ทั้งหมด',
-                responses: {
-                    200: {
-                        description: 'ไฟล์รูปภาพ',
-                        content: { 'application/json': { schema: { type: 'array', items: { $ref: '#/components/schemas/Listing_images' } } } }
-                    }
-
-                }
-            },
-            post: {
-                tags: ['Listing_images'],
-                summary: 'สร้าง Listing_images',
-                requestBody: {
-                    required: true,
-                    content: {
-                        'multipart/form-data': {
-                            schema: { $ref: '#/components/schemas/Listing_imagesInput' },
-                            encoding: {
-                                image: { contentType: 'image/*' }
-                            }
-                        }
-
-                    }
-                },
-                responses: {
-                    201: { description: 'สร้างสำเร็จ', content: { 'application/json': { schema: { $ref: '#/components/schemas/SuccessMessage' } } } }
-                }
-            }
-        },
-        '/listing_images/{id}': {
-            get: {
-                tags: ['Listing_images'],
-                summary: ' ดึง Listing_images พร้อม id',
-                parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'integer' } }],
-                responses: {
-                    200: { description: 'ข้อมูล รูปภาพ', content: { 'application/json': { schema: { $ref: '#/components/schemas/Listing_images' } } } },
-                    404: { description: 'ไม่พบ รูปภาพ', content: { 'application/json': { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-                }
-
-            },
-            put: {
-                tags: ['Listing_images'],
-                summary: ' แก้ไข Listing_images พร้อม Lstings ',
-                parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'integer' } }],
-                requestBody: {
-                    required: true,
-                    content: {
-                        'multipart/form-data': {
-                            schema: { $ref: '#/components/schemas/Listing_imagesInput' },
-                            encoding: {
-                                image: { contentType: 'image/*' }
-                            }
-                        }
-                    }
-                },
-                responses: {
-                    200: { description: 'แก้ไขสำเร็จ', content: { 'application/json': { schema: { $ref: '#/components/schemas/SuccessMessage' } } } }
-                }
-            },
-            delete: {
-                tags: ['Listing_images'],
-                summary: ' ลบ Listing_images ',
-                parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'integer' } }],
-                responses: {
-                    200: { description: 'ลบสำเร็จ', content: { 'application/json': { schema: { $ref: '#/components/schemas/SuccessMessage' } } } }
-
                 }
             }
         },
