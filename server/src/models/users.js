@@ -15,7 +15,7 @@ const findById = async (id) => {
 
 const findByEmail =async (email) => {
     const conn = await getConnection()
-    const [rows] = await conn.query('SELECT * FROM users WHERE email = ?',[email])
+    const [rows] = await conn.query('SELECT * FROM users WHERE email = ?',[email]) 
     return rows[0]
 }
 

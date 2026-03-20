@@ -83,7 +83,7 @@ const create = async (req, res, next) => {
 
 const update = async (req, res, next) => {
   try {
-    const errors = validateUserUpdate(req.body)  // ✅ เปลี่ยนตรงนี้
+    const errors = validateUserUpdate(req.body)  
     if (errors.length > 0) {
       return res.status(400).json({ message: 'ข้อมูลไม่ถูกต้อง', errors })
     }

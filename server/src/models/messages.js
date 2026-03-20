@@ -1,6 +1,6 @@
 const { getConnection } = require('../config/db')
 
-const findAll = async () => {                                                   //ไม่ต้องก็ได้
+const findAll = async () => {                                                   
     const conn = await getConnection()
     const [rows] = await conn.query(`
         SELECT messages.*,
@@ -16,7 +16,7 @@ const findAll = async () => {                                                   
 
 }
 
-const findById = async (id) => {                                                    //มี
+const findById = async (id) => {                                                    
     const conn = await getConnection()
     const [rows] = await conn.query(`
         SELECT messages.*,
@@ -34,7 +34,7 @@ const findById = async (id) => {                                                
 }
 
 
-const create = async (data) => {                                                    //มี
+const create = async (data) => {                                                    
     const conn = await getConnection()
     const { conversation_id, sender_id, content } = data
     const [result] = await conn.query(
@@ -54,7 +54,7 @@ const update = async (id, data) => {
     )
     return result
 }
-const remove = async (id) => {                                                      //มี
+const remove = async (id) => {                                                      
     const conn = await getConnection()
     const [result] = await conn.query('DELETE FROM messages WHERE id = ?', [parseInt(id)])
     return result
