@@ -68,7 +68,7 @@ const loadMessages = async () => {
             container.appendChild(div)
         })
 
-        // scroll ลงล่างสุด
+       
         container.scrollTop = container.scrollHeight
 
         document.querySelectorAll('.delete-msg').forEach(btn => {

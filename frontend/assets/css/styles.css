@@ -262,12 +262,12 @@ textarea::placeholder { color: var(--text-muted); }
 /* ─── Buttons ─────────────────────────────────── */
 .btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.7rem 1.2rem; border-radius: var(--radius-sm); font-family: "kanit", sans-serif; font-size: 0.88rem; font-weight: 600; cursor: pointer; border: none; transition: all 0.18s ease; white-space: nowrap; }
 .btn-primary { background: var(--accent); color: white; }
-.btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,113,227,0.3); }
+.btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(219, 11, 170, 0.3); }
 .btn-primary:active { transform: translateY(0); }
 .btn-ghost { background: transparent; color: var(--text-secondary); border: 1.5px solid var(--border); }
 .btn-ghost:hover { background: var(--surface); color: var(--text-primary); }
 .btn-icon { padding: 0.5rem 0.75rem; font-size: 0.82rem; }
-.btn-edit { background: var(--accent-light); color: var(--accent); border: 1px solid rgba(0,113,227,0.15); }
+.btn-edit { background: var(--accent-light); color: var(--accent); border: 1px solid rgba(209, 19, 114, 0.15); }
 .btn-edit:hover { background: #dbeafe; transform: translateY(-1px); }
 .btn-delete { background: var(--danger-light); color: var(--danger); border: 1px solid rgba(255,59,48,0.15); }
 .btn-delete:hover { background: #fee2e2; transform: translateY(-1px); }
